@@ -1,4 +1,4 @@
-package me.monkey;
+package power;
 
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.potion.PotionEffect;

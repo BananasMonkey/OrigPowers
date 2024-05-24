@@ -1,4 +1,4 @@
-package me.monkey;
+package power;
 
 public class Power implements PowerInterface {
 	private String powerName;
