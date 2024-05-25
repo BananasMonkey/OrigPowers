@@ -30,8 +30,10 @@ public class Main extends JavaPlugin implements Listener{
     public static void playerJoin(PlayerJoinEvent e) {
     	PowerMethods pm = new PowerMethods();
     	String playerName = e.getPlayer().getName();
-    	if (playerPower.get(playerName)== null) {
+    	if (playerPower.get(playerName).equals(null)) {
     		playerPower.put(playerName, new Power(pm.new Power_Phantom()));
+    	} else {
+    		System.out.println(playerPower.get(playerName));
     	}
     	
     }
