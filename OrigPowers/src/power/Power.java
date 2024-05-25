@@ -2,8 +2,9 @@ package power;
 
 public class Power implements PowerInterface {
 	private String powerName;
-
+	private static PowerMethodsInterface pm;
 	public Power(Object ob) {
+		pm = (PowerMethodsInterface) ob;
 	}
 
 	public void setName(String name) {
@@ -14,10 +15,9 @@ public class Power implements PowerInterface {
 	public String getName() {
 		return powerName;
 	}
-
-	@Override
-	public void setSwapHandAction() {
-		
+	
+	public PowerMethodsInterface getPowerObject() {
+		return pm;
 	}
 
 }

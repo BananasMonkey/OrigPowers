@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -40,9 +41,10 @@ public class Main extends JavaPlugin implements Listener{
     @EventHandler
     public static void swapHands(PlayerSwapHandItemsEvent event) {
     	event.setCancelled(true);
-    	PowerMethods pm = new PowerMethods();
-    	Power p = new Power(pm.new Power_Phantom());
-    	
+    	Player player = event.getPlayer();
+    	Power power = playerPower.get(player.getName());
+    	PowerMethodsInterface powerFunctions = power.getPowerObject();
+    	powerFunctions.swapHands(event); // code no no worky
     }
 }   		 
     
