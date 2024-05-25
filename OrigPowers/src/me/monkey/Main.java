@@ -16,7 +16,7 @@ import power.PowerMethodsInterface;
 
 public class Main extends JavaPlugin implements Listener{
 	static FileConfiguration config = Main.getPlugin(Main.class).getConfig();
-	static HashMap<String, PowerMethodsInterface> playerPower = new HashMap<String, PowerMethodsInterface>();
+	static HashMap<String, Power> playerPower = new HashMap<String, Power>();
     @Override
     public void onEnable() {
     	Bukkit.broadcastMessage("Plugin on");
@@ -29,7 +29,10 @@ public class Main extends JavaPlugin implements Listener{
     @EventHandler
     public static void playerJoin(PlayerJoinEvent e) {
     	PowerMethods pm = new PowerMethods();
-    	playerPower.entrySet(e.getPlayer().getName(),new Power(pm.new Power_Phantom()));
+    	String playerName = e.getPlayer().getName();
+    	if (playerPower.get(playerName)== null) {
+    		playerPower.put(playerName, new Power(pm.new Power_Phantom()));
+    	}
     	
     }
     @EventHandler
