@@ -1,6 +1,7 @@
 package power;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.potion.PotionEffect;
@@ -24,5 +25,32 @@ public class PowerMethods {
 			player.addPotionEffect(invisible);
 			player.setVelocity(player.getLocation().getDirection().multiply(0.7D));
 		}
+
+		@Override
+		public void onDamage(EntityDamageByEntityEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	public class Power_Berserk implements PowerMethodsInterface {
+		 
+		@Override
+		public void onSneak(PlayerToggleSneakEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSwapHands(PlayerSwapHandItemsEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onDamage(EntityDamageByEntityEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

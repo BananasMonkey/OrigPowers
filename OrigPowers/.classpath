@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/colto/OneDrive/Desktop/Minecraft/bundler/libraries/spigot-api-1.20.4-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="C:/Users/colto/OneDrive/Desktop/Minecraft/spigot-1.20.4.jar"/>
+	<classpathentry kind="lib" path="D:/creepWhyYoulookingAtThisPath/bungeecord-api-1.20-R0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
