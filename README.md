@@ -6,4 +6,5 @@ Todo List:
 - [x] Easy Implemention of new Powers
 - [ ] Action Bar Text 
 - [ ] Shop
+- [ ] Teams
 

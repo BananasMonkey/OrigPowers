@@ -8,6 +8,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -51,11 +53,11 @@ public class Main extends JavaPlugin implements Listener{
     	Bukkit.broadcastMessage("Plugin off");
     }
     @EventHandler
-    public static void playerJoin(PlayerJoinEvent e) {
+    public static void onPlayerJoin(PlayerJoinEvent e) {
     	PowerMethods pm = new PowerMethods();
     	String playerName = e.getPlayer().getName();
     	if (playerPower.get(playerName) == null || playerPowerCooldown.get(playerName) == null) {
-    		playerPower.put(playerName, new Power(pm.new Power_Phantom()));
+    		playerPower.put(playerName, new Power(pm.new Power_Phantom(), 15));
     		playerPowerCooldown.put(playerName, 0.0);
     	} else {
     		System.out.println(playerPower.get(playerName));
@@ -63,7 +65,17 @@ public class Main extends JavaPlugin implements Listener{
     	
     }
     @EventHandler
-    public static void swapHands(PlayerSwapHandItemsEvent event) {
+    public static void onPlayerChat(AsyncPlayerChatEvent event) {
+    	Player player = event.getPlayer();
+    	String message = event.getMessage();
+    	if (message.contains("gaia")) {
+    		PowerMethods pm = new PowerMethods();
+    		playerPower.put(player.getName(), new Power(pm.new Power_Gaia(), 5));
+    		player.sendMessage(ChatColor.LIGHT_PURPLE + "Power Changed!");
+    	}
+    }
+    @EventHandler
+    public static void onSwapHands(PlayerSwapHandItemsEvent event) {
     	event.setCancelled(true);
     	Player player = event.getPlayer();
     	String playerName = player.getName();
@@ -72,15 +84,23 @@ public class Main extends JavaPlugin implements Listener{
     		Power power = playerPower.get(playerName);
     		PowerMethodsInterface powerFunctions = power.getPowerObject();
     		powerFunctions.onSwapHands(event);
-    		playerPowerCooldown.put(playerName, 15.0);
+    		playerPowerCooldown.put(playerName, (double) power.getCooldown());
     	}
     }
     @EventHandler
-    public static void sneak(PlayerToggleSneakEvent event) {
+    public static void onSneak(PlayerToggleSneakEvent event) {
     	Player player = event.getPlayer();
     	Power power = playerPower.get(player.getName());
     	PowerMethodsInterface powerFunctions = power.getPowerObject();
     	powerFunctions.onSneak(event);
+    }
+    
+    @EventHandler
+    public static void onInteractWithEntity(PlayerInteractEntityEvent event) {
+    	Player player = event.getPlayer();
+    	Power power = playerPower.get(player.getName());
+    	PowerMethodsInterface powerFunctions = power.getPowerObject();
+    	powerFunctions.onInteractWithEntity(event, event.getRightClicked());
     }
 }   		 
     
