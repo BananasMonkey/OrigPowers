@@ -1,5 +1,7 @@
 package power;
 
+import java.util.Random;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,6 +15,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -50,6 +54,9 @@ public class PowerMethods {
 		}
 
 	}
+	
+	//                                                      \\
+	
 	public class Power_Gaia implements PowerMethodsInterface {
 		@Override
 		public void onSneak(PlayerToggleSneakEvent e) {
@@ -87,6 +94,41 @@ public class PowerMethods {
 				Player player = e.getPlayer();
 				w.setVelocity(player.getLocation().getDirection().multiply(0.95D));
 			}
+			
+		}
+		
+	}
+	
+	//                                                      \\
+	
+	public class Power_Femboy implements PowerMethodsInterface {
+
+		@Override
+		public void onSneak(PlayerToggleSneakEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onSwapHands(PlayerSwapHandItemsEvent e) {
+			ItemStack ears = new ItemStack(Material.CARVED_PUMPKIN);
+			ItemMeta ItemMeta = ears.getItemMeta();
+			Random rn = new Random();
+			int answer = rn.nextInt(7) + 1;
+			ItemMeta.setCustomModelData(answer);
+			ears.setItemMeta(ItemMeta);
+			e.getPlayer().getInventory().setHelmet(ears);
+		}
+
+		@Override
+		public void onDamage(EntityDamageByEntityEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onInteractWithEntity(PlayerInteractEntityEvent e, Entity w) {
+			// TODO Auto-generated method stub
 			
 		}
 		

@@ -62,15 +62,20 @@ public class Main extends JavaPlugin implements Listener{
     	} else {
     		System.out.println(playerPower.get(playerName));
     	}
-    	
+    	e.getPlayer().setResourcePack("https://download.mc-packs.net/pack/9c766cbf5c8aa5bfcb461f25ed6547868d90745c.zip");
     }
     @EventHandler
     public static void onPlayerChat(AsyncPlayerChatEvent event) {
     	Player player = event.getPlayer();
     	String message = event.getMessage();
-    	if (message.contains("gaia")) {
+    	if (message.contains("!power")) {
     		PowerMethods pm = new PowerMethods();
-    		playerPower.put(player.getName(), new Power(pm.new Power_Gaia(), 5));
+    		playerPower.put(player.getName(), new Power(pm.new Power_Gaia(), 4));
+    		player.sendMessage(ChatColor.LIGHT_PURPLE + "Power Changed!");
+    	}
+    	if (message.contains("femboy")) {
+    		PowerMethods pm = new PowerMethods();
+    		playerPower.put(player.getName(), new Power(pm.new Power_Femboy(), 0));
     		player.sendMessage(ChatColor.LIGHT_PURPLE + "Power Changed!");
     	}
     }
